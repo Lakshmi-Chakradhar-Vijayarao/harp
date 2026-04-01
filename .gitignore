@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_meta
+
+# Large binary / model files — too large for GitHub
+results/hidden_states/hidden_states.npz
+results/hidden_states/best_layer_probe.pkl
+results/hidden_states/class_means.npz
+results/hidden_states/steering_vector.npy
+results/hidden_states/truth_direction.npy
+
+# Large processed data files
+data/processed/truthfulqa_responses.csv
+data/processed/truthfulqa_labeled.csv
+data/processed/nq_responses.csv
+data/processed/nq_labeled.csv
+data/processed/adversarial_responses.csv
+data/processed/adversarial_labeled.csv
+
+# Raw downloads cache
+data/raw/downloads/
+
+# OS
+.DS_Store
+.DS_Store?
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Logs
+*.log
