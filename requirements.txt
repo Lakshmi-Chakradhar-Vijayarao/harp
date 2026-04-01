@@ -1,29 +1,4 @@
-# Core ML / model inference
-torch>=2.0.0
-transformers>=4.40.0
-accelerate>=0.26.0
-sentence-transformers>=2.6.0
-safetensors>=0.4.0
-
-# Data
+streamlit>=1.32.0
 numpy>=1.24.0
 pandas>=2.0.0
-scikit-learn>=1.3.0
-scipy>=1.11.0
-
-# Visualisation / dashboard
-streamlit>=1.32.0
 matplotlib>=3.7.0
-seaborn>=0.12.0
-plotly>=5.18.0
-
-# Utilities
-datasets>=2.16.0
-huggingface_hub>=0.20.0
-tqdm>=4.65.0
-joblib>=1.3.0
-PyYAML>=6.0
-
-# Jupyter (optional, for colab notebooks)
-jupyter>=1.0.0
-ipywidgets>=8.0.0
