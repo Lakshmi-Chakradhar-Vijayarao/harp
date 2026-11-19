@@ -3,6 +3,8 @@
 
 **Lakshmi Chakradhar Vijayarao**
 
+> **Status note (20 Nov 2026): two calibration results are withdrawn.** `src/calibration/calibrate.py` applies `softmax(..., axis=-1)` to one logit per sample, which normalises across samples instead of within each one. The temperature-scaling result (ECE 0.395, "temperature scaling overcalibrates") and the estimator's reported ECE of 0.039, which came from the same script, are therefore not valid. Ranking metrics (AUROC, AUARC) are unaffected by this bug. Audit: 7 Nov 2026.
+
 Probing internal hidden-state geometry to detect hallucinations in Qwen 2.5 3B,
 with a three-action uncertainty-aware output routing policy.
 
@@ -76,7 +78,7 @@ and report what the numbers actually say.
  │        ├── α* ≤ p_fail < β*  ──→  REGENERATE  (90.0%)                               │
  │        └── p_fail ≥ β*  ──→  ABSTAIN  (5.7%)                                        │
  │                                                                                      │
- │   ECE = 0.039 (well-calibrated)  |  Test AUROC 0.787  |  AUARC 0.749               │
+ │   ECE: withdrawn (see note)      |  Test AUROC 0.787  |  AUARC 0.749               │
  └──────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -147,7 +149,7 @@ and report what the numbers actually say.
 | 12 | What thresholds minimise governance loss? | Grid search over α*, β* on validation set | α* = 0.15, β* = 0.90 |
 | 13 | How does HaRP compare to baselines? | Raw LLM vs entropy-only vs full system | HaRP hall_rate: 0.167 vs 0.395 raw |
 | 14 | Does sycophancy corrupt the signal? | Sycophancy prompt variants analysis | Failure mode identified, documented |
-| 15 | Is the failure estimator well-calibrated? | ECE binned calibration | ECE = **0.039** (well-calibrated) |
+| 15 | Is the failure estimator well-calibrated? | ECE binned calibration | ~~ECE = 0.039~~ withdrawn (calibration code bug; see status note) |
 | 16 | What is the intermediate ablation picture? | Feature group ablation table | Stepping stone to Exp 24 |
 | 17 | Does NLI-based semantic entropy help? | Cluster entropy via NLI entailment | Group B2 — marginal contribution |
 | 18 | Can we decompose uncertainty types? | Entropy × consistency 2×2 thresholding | 4-quadrant taxonomy defined |
@@ -236,7 +238,7 @@ a "truth direction" vector: h'[L] = h[L] + α·v. Tested to see if it pushes hal
 generations toward correct outputs.
 
 **ECE** — Expected Calibration Error. Measures whether the estimator's probability scores
-are accurate — not just well-ranked. ECE = 0.039 means the HaRP estimator is well-calibrated.
+are accurate — not just well-ranked. (HaRP's reported ECE of 0.039 is withdrawn; see the status note.)
 
 **Clopper-Pearson CI** — Exact binomial confidence interval for small-n rate estimation.
 Used for hallucination rate among accepted queries (n=6). Normal approximation is invalid

@@ -1,5 +1,8 @@
 # HaRP — Research Value, Breadth, and Future Scope
 
+> **Status note (20 Nov 2026): two calibration results are withdrawn.** `src/calibration/calibrate.py` applies `softmax(..., axis=-1)` to one logit per sample, which normalises across samples instead of within each one. The estimator's ECE of 0.039 and the temperature-scaling result (ECE 0.395, "temperature scaling degrades calibration") both came from that script and are not valid. Every ECE and calibration statement below is withdrawn; ranking metrics (AUROC, AUARC) are unaffected.
+
+
 **Project:** Hallucination-aware Representation Probing
 **Model:** Qwen 2.5 3B Instruct (36 layers, 2048 hidden dim)
 **Status:** Complete (28 experiments)
